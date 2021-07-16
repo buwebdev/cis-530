@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bookclub | Welcome</title>
+    <!--  Bootstrap StyleSheet CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          crossorigin="anonymous">
+</head>
+<body>
+    <div th:insert="~{fragments/header :: header}"></div>
+
+    <main>
+        <section class="py-5 text-center container">
+            <div class="row py-lg-5">
+                <div class="col-lg-6 col-md-8 mx-auto">
+                    <h1 class="fw-light">Book Club</h1>
+                    <p class="lead text-muted">
+                        Welcome to the Book Club app, your "one stop
+                        shop" for all of your book club needs.  Below you will find a list of
+                        this months top 10 favorite books.  Select a book to see it's details.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="album py-5 bg-light">
+            <div class="container">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                    <div class="col" th:each="book : ${books}">
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+                                <p class="card-text">
+                                    <span th:text="${book.getTitle()}"></span>
+                                    <br />
+                                    <small class="text-muted"><em th:text="${book.getDescription()}"></em></small>
+                                </p>
+
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <ul th:each="author : ${book.getAuthors()}" style="list-style-type: none;">
+                                        <li>
+                                            <small class="text-muted" th:text="${author}"></small>
+                                        </li>
+                                    </ul>
+                                    <div class="btn-group">
+                                        <a href="#" th:href="@{/{id}(id=${book.getIsbn()})}" class="btn btn-sm btn-outline-secondary">View</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div th:insert="~{fragments/footer :: footer}"></div>
+    <div th:insert="~{fragments/scriptFooter :: scriptFooter}"></div>
+</body>
+</html>
