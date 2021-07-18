@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bookclub | About Us</title>
+
+    <!--  Bootstrap StyleSheet CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          crossorigin="anonymous">
+</head>
+<body>
+<div th:insert="~{fragments/header :: header}"></div>
+
+<div class="container py-5" style="width: 50%;">
+
+    <div class="row">
+
+        <div class="col-12">
+            <h1 class="text-center">Welcome to the about page.</h1>
+        </div>
+    </div>
+
+    <br /><br />
+    <div class="row">
+        <div class="col-4">
+            <img th:src="@{/images/about.jpg}" width="300" height="300" />
+        </div>
+
+        <div class="col-8">
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac velit ante. Pellentesque mollis condimentum efficitur. Sed vitae ipsum a velit ullamcorper tincidunt
+                sit amet nec felis. Duis pharetra lobortis tincidunt. Aenean vulputate vestibulum ipsum, in accumsan dui imperdiet eu.
+                Curabitur egestas hendrerit metus, vel mattis massa laoreet semper. Maecenas ante turpis, porttitor sit amet urna a, aliquet molestie risus.
+            </p>
+
+            <p>
+                Pellentesque quis posuere nibh. Curabitur massa turpis, euismod et porttitor vel, faucibus vel metus. Integer at libero sagittis nisi interdum placerat eget eu odio.
+                Praesent vitae cursus mi, et sagittis mauris. In maximus consectetur eleifend. Proin sollicitudin est ante, vitae molestie felis mattis vel. In sagittis quam tellus,
+                non egestas nisi sodales eget. Proin non elit eget libero auctor interdum. Vestibulum lacinia, risus sed efficitur volutpat, ipsum lorem aliquam dolor,
+                eu vulputate magna nisi sed odio. Sed et mi nisl. Nunc eget arcu nunc. Nunc at ligula dignissim, lobortis odio et, tincidunt nibh. Cras semper neque in
+                lacinia malesuada. Morbi viverra, tellus vel iaculis egestas, risus risus condimentum sem, lobortis viverra purus mi et turpis. Ut lacus tortor, porttitor
+                quis auctor vel, elementum ut lacus.
+            </p>
+        </div>
+    </div>
+</div>
+
+<div th:insert="~{fragments/scriptFooter :: scriptFooter}"></div>
+</body>
+</html>

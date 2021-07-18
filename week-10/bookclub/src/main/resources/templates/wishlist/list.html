@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bookclub | Wishlist</title>
+
+    <!--  Bootstrap StyleSheet CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          crossorigin="anonymous">
+</head>
+<body>
+    <div th:insert="~{fragments/header :: header}"></div>
+
+    <div class="py-5 container" style="width: 50%;">
+        <h2 class="text-center">My Wishlist</h2>
+
+        <br />
+
+        <p class="text-center">
+            <a href="/wishlist/new" th:href="@{/wishlist/new}" class="btn btn-outline-secondary text-center">New Wishlist Item</a>
+        </p>
+
+        <div id="wishlist"></div>
+    </div>
+
+    <div th:insert="~{fragments/scriptFooter :: scriptFooter}"></div>
+
+    <script type="text/javascript">
+        class HttpClient {
+            async get(url, params = "") {
+                url = new URL(url);
+                url.search = new URLSearchParams(params).toString();
+
+                console.log(url.toString());
+
+                const res = await fetch(url.toString(), {
+                    method: 'GET',
+                });
+
+                return res.json();
+            }
+        }
+
+        function buildTable (books) {
+            let tableString = `<table class="table"><tr><th>ISBN</th><th>Title</th><th>Functions</th></tr>`;
+
+            for (let book of books) {
+                tableString += `<tr><td>${book.isbn}</td><td>${book.title}</td><td><a href="/wishlist/${book.id}" th:href="@{/wishlist/${book.id}">Edit</a> | <a href="/wishlist/remove/${book.id}" th:href="@{/wishlist/remove/${book.id}">Delete</a></td></tr>`;
+            }
+
+            tableString += `</table>`
+
+            return tableString;
+        }
+
+        const http = new HttpClient();
+
+        http.get('http://localhost:8080/api/wishlist').then(res => {
+            console.log(res);
+            document.getElementById("wishlist").innerHTML = buildTable(res);
+        }).catch(e => {
+            console.log(e);
+        })
+    </script>
+</body>
+</html>
